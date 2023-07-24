@@ -1,0 +1,19 @@
+.App {
+  font-family: sans-serif;
+}
+
+.list-item {
+  display: flex;
+  margin-inline-start:20px;
+  /* margin-top:10px; */
+}
+
+.list-item-subtree {
+  margin-left: 25px;
+}
+
+#root{
+  font-size: 1.25rem;
+}
+
+

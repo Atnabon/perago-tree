@@ -1,0 +1,34 @@
+{
+  "positions": [
+    {
+      "name": "CEO",
+      "description": "lorem ipsum",
+      "parentName": "NONE",
+      "id": 1
+    },
+    {
+      "name": "CTO",
+      "description": "LoremIPSUM data enccoder",
+      "parentName": "CEO",
+      "id": 2
+    },
+    {
+      "name": "COO",
+      "description": "lorem ipsum",
+      "parentName": "CEO",
+      "id": 3
+    },
+    {
+      "name": "Project Manager",
+      "description": "df",
+      "parentName": "CTO",
+      "id": 5
+    },
+    {
+      "name": "gari",
+      "description": "lorem ipsum",
+      "parentName": "COO",
+      "id": 6
+    }
+  ]
+}
