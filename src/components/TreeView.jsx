@@ -4,12 +4,11 @@ import { PiCaretRightBold, PiCaretDownBold } from "react-icons/pi";
 import { MdDelete } from "react-icons/md";
 import { AiTwotoneEdit } from "react-icons/ai";
 import axios from "axios";
-import { enabled} from "../features/dialog/positionSlice";
-import {useDispatch } from "react-redux";
+import { enabled } from "../features/dialog/positionSlice";
+import { useDispatch } from "react-redux";
 import { setSelectedPositionId } from "../features/position/positionSlice";
-
-
-export function TreeItem({ title, children, id, onDeletePosition }) {
+export function TreeItem({ title, children, id, onDeletePosition, setPositions }) {
+  // const editDialog = useSelector((state) => state.dialog.showEditDialog);
   const dispatch = useDispatch();
   const handleClickOpen = () => {
     dispatch(setSelectedPositionId(id));
@@ -39,7 +38,9 @@ export function TreeItem({ title, children, id, onDeletePosition }) {
         await deletePositionAndChildren(childId);
       }
     }
-
+setPositions((prevPositions) =>
+  prevPositions.filter((pos) => pos.id !== positionId)
+);
     // Finally, delete the current position
     await axios.delete(`http://localhost:5000/positions/${positionId}`);
   };

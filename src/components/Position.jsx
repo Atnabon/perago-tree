@@ -1,13 +1,17 @@
-import React, {useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { Alert } from "@mantine/core";
+
 
 const Position = ({ addNewPosition, setPositionChanged, positions }) => {
+  const [positionCreated, setPositionCreated] = useState(false);
+  
   const { register, handleSubmit, reset, formState } = useForm();
-    useEffect(() => {
-      // This will update the form when the positions prop changes
-        reset();
-    }, [reset]);
+  useEffect(() => {
+    // This will update the form when the positions prop changes
+    reset();
+  }, [reset]);
 
   const onSubmit = (data) => {
     // Make a POST request to the JSON server with the new position data
@@ -17,14 +21,30 @@ const Position = ({ addNewPosition, setPositionChanged, positions }) => {
         addNewPosition(response.data);
         console.log("Position added successfully:", response.data);
         setPositionChanged((prevPosition) => !prevPosition);
+        setPositionCreated(true)
         // Clear the form after successful submission
         reset();
       })
       .catch((error) => console.error("Error adding position:", error));
   };
+ 
+  useEffect(() => {
+    if (positionCreated) {
+      const timer = setTimeout(() => {
+        setPositionCreated(false);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [positionCreated]);
 
   return (
     <div>
+      { positionCreated && <div className="flex justify-center items-center">
+        <Alert title="Success!" color="green" className="w-[20vw] ">
+          Position Added successfully!
+        </Alert>
+      </div>}
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4 w-[50vw] ml-[5vw] sm:ml-48"
@@ -91,6 +111,7 @@ const Position = ({ addNewPosition, setPositionChanged, positions }) => {
           </button>
         </div>
       </form>
+      
     </div>
   );
 };
