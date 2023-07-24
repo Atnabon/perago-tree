@@ -1,24 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 const Position = ({ addNewPosition, setPositionChanged, positions }) => {
-  // const [positions, setPositions] = useState([]);
-  const [positionCreated, setPositionCreated] = useState(false);
-
-  // useEffect(() => {
-  //   // Fetch data from the JSON server using Axios
-  //   axios
-  //     .get("http://localhost:5000/positions")
-  //     .then((response) => setPositions(response.data))
-  //     .catch((error) => console.error("Error fetching data:", error));
-  // }, []);
-
   const { register, handleSubmit, reset, formState } = useForm();
     useEffect(() => {
       // This will update the form when the positions prop changes
         reset();
-    }, [positions]);
+    }, [reset]);
 
   const onSubmit = (data) => {
     // Make a POST request to the JSON server with the new position data

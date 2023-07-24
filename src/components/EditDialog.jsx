@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { Modal, Button } from "@mantine/core";
-import { enabled, disabled } from "../features/dialog/positionSlice";
+import { Modal} from "@mantine/core";
+import { disabled } from "../features/dialog/positionSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -10,7 +10,7 @@ const EditDialog = ({setPositionChanged}) => {
   let selectedPositionId = useSelector(
     (state) => state.position.selectedPositionId
   );
-  console.log("seled id from modal", selectedPositionId);
+  console.log("select id from modal", selectedPositionId);
   console.log("the selected position is ", selectedPositionId);
   const editDialog = useSelector((state) => state.dialog.showEditDialog);
   const { register, handleSubmit, reset, formState } = useForm();
@@ -47,6 +47,7 @@ const EditDialog = ({setPositionChanged}) => {
     selectedPositionName,
     selectedPositionDescription,
     selectedPositionParent,
+    reset
   ]);
 
   useEffect(() => {
